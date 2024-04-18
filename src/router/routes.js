@@ -17,10 +17,15 @@ import NotFoundPage from "../pages/NotFoundPage";
 export const router = createBrowserRouter([
   {
     path: "*",
-    element: <NotFoundPage />
+    element: <NotFoundPage />,
   },
   {
     path: "/",
+    element: <RootLayout />,
+    children: [{ index: true, element: <RootLayout /> }],
+  },
+  {
+    path: "/villans",
     element: <RootLayout />,
     children: [{ index: true, element: <RootLayout /> }],
   },

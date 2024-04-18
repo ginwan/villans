@@ -1,23 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/Auth/Login";
-import NotFoundPage from "./pages/NotFoundPage";
-import Register from "./pages/Auth/Register";
-import Hotels from "./pages/Hotels";
-import HoltelDetails from "./pages/HotelDetails";
-import RoomDetails from "./pages/RoomDetails";
-import Reservetion from "./pages/Reservation";
-import Books from "./pages/Books";
-import NextBookingTable from "./components/booking/NextBookingTable";
-import PrevBookingTable from "./components/booking/PrevBookingTable";
-import ProtectedRoutes from "./components/ProtectedRoute";
-import UpdateBooking from "./pages/UpdateBooking";
-import Favorite from "./pages/Favourite";
-import RootLayout from "./pages/RootLayout";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/routes";
 
 const App = () => {
   return (
     <>
-      <BrowserRouter>
+      <RouterProvider router={router} />
+      {/* <BrowserRouter>
         <Routes>
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/" element={<RootLayout />} />
@@ -50,7 +38,7 @@ const App = () => {
           <Route path="/books/:id" element={<UpdateBooking />} />
           <Route path="/fev" element={<Favorite />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </>
   );
 };

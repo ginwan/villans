@@ -14,11 +14,11 @@ const NextBookingTable = () => {
   const [popup, setPopup] = useState({show: false, id: null});
   const dispatch = useDispatch();
 
-  const deleteBook = (id) => {
-    if (window.confirm(`Do You Realy Want To Delete This Booking`)) {
-      dispatch(deleteBooking(id));
-    }
-  };
+  // const deleteBook = (id) => {
+  //   if (window.confirm(`Do You Realy Want To Delete This Booking`)) {
+  //     dispatch(deleteBooking(id));
+  //   }
+  // };
 
   const handleDelete = (id) =>{
     setPopup({
