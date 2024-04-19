@@ -9,14 +9,15 @@ const Hotels = () => {
 
   const [hotels, setHotels] = useState();
   const [spinning, setSpinning] = useState(false);
+  const [address, setAddress] = useState("");
   
   useEffect(() =>{
     setSpinning(true)
     axios
-      .get("https://hotel-booking-api-wnq6.onrender.com/hotels")
+      .get(`https://hotel-booking-api-wnq6.onrender.com/hotels?address=${address}`)
       .then(
         (response) => setHotels(response.data.hotels)).then(() => setSpinning(false)).catch((response) => {return <p>{response.error}</p>});
-  },[])
+  },[address])
 
     const filterLocation = (location) => {
       const newItems = hotels?.filter((value) => {
@@ -47,7 +48,7 @@ const Hotels = () => {
         <div className="contain">
           <div className="md:flex gap-5">
             <Filter
-              place={filterLocation}
+              place={setAddress}
               rating={filterRating}
               pricing={filterPrice}
             />
