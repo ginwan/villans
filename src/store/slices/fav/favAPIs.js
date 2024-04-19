@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 
 const cookie = new Cookies();
 const userId = cookie.get("userId");
+console.log("🚀 ~ userId:", userId);
 const token = cookie.get("userToken");
 
 export const addItem = createAsyncThunk(
@@ -61,7 +62,10 @@ export const deleteItems = createAsyncThunk(
           Authorization: `bearer ${token}`,
         },
       };
-      await axios.delete(`https://hotel-booking-api-wnq6.onrender.com/favorites/${userId}/${id}`, head);
+      await axios.delete(
+        `https://hotel-booking-api-wnq6.onrender.com/favorites/${userId}/${id}`,
+        head
+      );
       return id;
     } catch (error) {
       return rejectWithValue(error.message);

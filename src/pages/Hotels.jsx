@@ -12,12 +12,16 @@ const Hotels = () => {
   const [address, setAddress] = useState("");
   
   useEffect(() =>{
+    getHotels()
+  },[address])
+
+  const getHotels = async () => {
     setSpinning(true)
-    axios
+    await axios
       .get(`https://hotel-booking-api-wnq6.onrender.com/hotels?address=${address}`)
       .then(
         (response) => setHotels(response.data.hotels)).then(() => setSpinning(false)).catch((response) => {return <p>{response.error}</p>});
-  },[address])
+  }
 
     const filterLocation = (location) => {
       const newItems = hotels?.filter((value) => {
@@ -53,7 +57,7 @@ const Hotels = () => {
               pricing={filterPrice}
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full md:w-[70%] pt-5 pb-20">
-              <HotelCard spinning={spinning} hotel={hotels} />
+              <HotelCard spinning={spinning} hotel={hotels} getHotels={getHotels} />
             </div>
           </div>
         </div>

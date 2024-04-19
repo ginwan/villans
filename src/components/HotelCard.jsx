@@ -6,7 +6,7 @@ import useProtectRoute from "../hooks/use-protect-route";
 import Routing from "./messages/Routing";
 import HotelSkeleton from "./loader/HotelSkeleton";
 
-const HotelCard = ({ spinning, hotel }) => {
+const HotelCard = ({ spinning, hotel, getHotels }) => {
   const { userToken, show, open, close } = useProtectRoute();
   const dispatch = useDispatch();
   
@@ -16,13 +16,17 @@ const HotelCard = ({ spinning, hotel }) => {
   const handelFavorite = useCallback(
     (id) => {
       if (itemsId?.includes(id)) {
-        dispatch(deleteItems(id));
+        dispatch(deleteItems(id)).then(() => {
+          getHotels()
+        })
         localStorage.setItem("favorites",JSON.stringify(itemsId?.filter(item => item !== id)))
       } else {
-        dispatch(addItem({hotels : [id]}));
+        dispatch(addItem({hotels : [id]})).then(() => {
+          getHotels()
+        })
       }
     },
-    [ itemsId, dispatch]
+    [ itemsId, dispatch, getHotels]
   );
 
   return (
