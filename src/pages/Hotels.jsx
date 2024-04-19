@@ -13,6 +13,7 @@ const Hotels = () => {
   
   useEffect(() =>{
     getHotels()
+    // eslint-disable-next-line
   },[address])
 
   const getHotels = async () => {
